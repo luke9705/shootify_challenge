@@ -73,11 +73,58 @@ t.write(f"chromiq Change the {v} color on the right to match the left")  # trigg
 
 #### Training setup
 
-To train Kontext I used AIToolkit by Ostris, which is a well maintained LoRA Trainer for several Diffusion Models. Since the aim of the task is to only modify the right side of the images (the garment), I use the masking on the loss function in order to not waste model capability on recreating also the left side: in this way, the gradient signal was focused only on the part of the images that matters for this problem, speeding up training and maintaining efficiency. In addition, weight decay was set to 0 and the learning rate at 0.0001 to check as fast as possible if the approach worked.
+To train Kontext, I used AIToolkit by Ostris, which is a well maintained LoRA Trainer for several Diffusion Models. Since the aim of the task is to only modify the right side of the images (the garment), I use the masking on the loss function in order to not waste model capability on recreating also the left side: in this way, the gradient signal was focused only on the part of the images that matters for this problem, speeding up training and maintaining efficiency. 
+
+In addition, weight decay was set to 0 and the learning rate at 0.0001 to check as fast as possible if the approach worked.
 Due to limited compute resources, I couldn't train for more than 5200 steps, taking an overall 15 hours on an Nvidia RTX 6000 Pro. For the detailed hyperparameters setup, please check *"config.yaml"*.
+
+The problem I have encountered is that different website has different aspect ratio for the on-model images, so it was hard to resize without any strech or crop. In the end, I decided to resize and pad all the pair images with 1328 x 800, which is one of the supported Kontext resolutions.
 
 ### Results and evaluation metrics
 
+The results are fair, considering the limited dataset and not optimal resolution for all the test images. I computed inference on the test set, which is composed by the 5 Shootify images + 3 I obtained online. Of course, the images were not used in training to ensure no data leakage and maintain the evaluation correct.
+
+Below the qualitative results on the 8 generated images (some images are padded before and it is not the results of a poor generation):
+
+
+<table>
+    <tr>
+        <th>Input Pair</th>
+        <th>Generated Output</th>
+    </tr>
+    <tr>
+        <td><img src="test/control/pair1.jpg" alt="Generated1" width="400"/></td>
+        <td><img src="test/generated/pair1.jpg" alt="Generated2" width="400"/></td>
+    </tr>
+        <tr>
+        <td><img src="test/control/pair2.jpg" alt="Generated1" width="400"/></td>
+        <td><img src="test/generated/pair2.jpg" alt="Generated2" width="400"/></td>
+    </tr>
+        <tr>
+        <td><img src="test/control/pair3.jpg" alt="Generated1" width="400"/></td>
+        <td><img src="test/generated/pair3.jpg" alt="Generated2" width="400"/></td>
+    </tr>
+        <tr>
+        <td><img src="test/control/pair4.jpg" alt="Generated1" width="400"/></td>
+        <td><img src="test/generated/pair4.jpg" alt="Generated2" width="400"/></td>
+    </tr>
+        <tr>
+        <td><img src="test/control/pair5.jpg" alt="Generated1" width="400"/></td>
+        <td><img src="test/generated/pair5.jpg" alt="Generated2" width="400"/></td>
+    </tr>
+        <tr>
+        <td><img src="test/control/pair6.jpg" alt="Generated1" width="400"/></td>
+        <td><img src="test/generated/pair6.jpg" alt="Generated2" width="400"/></td>
+    </tr>
+        <tr>
+        <td><img src="test/control/pair7.jpg" alt="Generated1" width="400"/></td>
+        <td><img src="test/generated/pair7.jpg" alt="Generated2" width="400"/></td>
+    </tr>
+        <tr>
+        <td><img src="test/control/pair8.jpg" alt="Generated1" width="400"/></td>
+        <td><img src="test/generated/pair8.jpg" alt="Generated2" width="400"/></td>
+    </tr>
+</table>
 
 
 
