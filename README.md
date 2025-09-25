@@ -84,49 +84,50 @@ The problem I have encountered is that different website has different aspect ra
 
 The results are fair, considering the limited dataset and not optimal resolution for all the test images. I computed inference on the test set, which is composed by the 5 Shootify images + 3 I obtained online. Of course, the images were not used in training to ensure no data leakage and maintain the evaluation correct.
 
-Below the qualitative results on the 8 generated images (some images are padded before and it is not the results of a poor generation):
-
-
+Below the qualitative results on the 8 generated images (the images are padded before and it is not the results of a poor generation):
 <table>
     <tr>
         <th>Input Pair</th>
         <th>Generated Output</th>
     </tr>
     <tr>
-        <td><img src="test/control/pair1.jpg" alt="Generated1" width="400"/></td>
-        <td><img src="test/generated/pair1.jpg" alt="Generated2" width="400"/></td>
+        <td><img src="test/control/pair1.jpg" alt="Input1" width="400"/></td>
+        <td><img src="test/generated/pair1.jpg" alt="Generated1" width="400"/></td>
     </tr>
-        <tr>
-        <td><img src="test/control/pair2.jpg" alt="Generated1" width="400"/></td>
+    <tr>
+        <td><img src="test/control/pair2.jpg" alt="Input2" width="400"/></td>
         <td><img src="test/generated/pair2.jpg" alt="Generated2" width="400"/></td>
     </tr>
-        <tr>
-        <td><img src="test/control/pair3.jpg" alt="Generated1" width="400"/></td>
-        <td><img src="test/generated/pair3.jpg" alt="Generated2" width="400"/></td>
+    <tr>
+        <td><img src="test/control/pair3.jpg" alt="Input3" width="400"/></td>
+        <td><img src="test/generated/pair3.jpg" alt="Generated3" width="400"/></td>
     </tr>
-        <tr>
-        <td><img src="test/control/pair4.jpg" alt="Generated1" width="400"/></td>
-        <td><img src="test/generated/pair4.jpg" alt="Generated2" width="400"/></td>
+    <tr>
+        <td><img src="test/control/pair4.jpg" alt="Input4" width="400"/></td>
+        <td><img src="test/generated/pair4.jpg" alt="Generated4" width="400"/></td>
     </tr>
-        <tr>
-        <td><img src="test/control/pair5.jpg" alt="Generated1" width="400"/></td>
-        <td><img src="test/generated/pair5.jpg" alt="Generated2" width="400"/></td>
+    <tr>
+        <td><img src="test/control/pair5.jpg" alt="Input5" width="400"/></td>
+        <td><img src="test/generated/pair5.jpg" alt="Generated5" width="400"/></td>
     </tr>
-        <tr>
-        <td><img src="test/control/pair6.jpg" alt="Generated1" width="400"/></td>
-        <td><img src="test/generated/pair6.jpg" alt="Generated2" width="400"/></td>
+    <tr>
+        <td><img src="test/control/pair6.jpg" alt="Input6" width="400"/></td>
+        <td><img src="test/generated/pair6.jpg" alt="Generated6" width="400"/></td>
     </tr>
-        <tr>
-        <td><img src="test/control/pair7.jpg" alt="Generated1" width="400"/></td>
-        <td><img src="test/generated/pair7.jpg" alt="Generated2" width="400"/></td>
+    <tr>
+        <td><img src="test/control/pair7.jpg" alt="Input7" width="400"/></td>
+        <td><img src="test/generated/pair7.jpg" alt="Generated7" width="400"/></td>
     </tr>
-        <tr>
-        <td><img src="test/control/pair8.jpg" alt="Generated1" width="400"/></td>
-        <td><img src="test/generated/pair8.jpg" alt="Generated2" width="400"/></td>
+    <tr>
+        <td><img src="test/control/pair8.jpg" alt="Input8" width="400"/></td>
+        <td><img src="test/generated/pair8.jpg" alt="Generated8" width="400"/></td>
     </tr>
 </table>
 
+For a quantitative analysis I decide to take
 
+
+Only on two images the color-correction seems non-existent while on the rest of them, it seems the model learns to copy the color from the left side.
 
 ## References
 
