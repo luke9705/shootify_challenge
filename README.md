@@ -47,13 +47,13 @@ labels = [
 
 This approach resulted in a complete automatic detection, segmentation and masking process.
 
-### Training Flux.1-Kontext
+### Training Flux.1-Kontext-Dev
 
 I decided to fine-tune a Diffusion Model for color-garment translation. Due to limited compute resources, I opted for training a LoRA to maximize efficiency and speed. LoRA is often sufficient to adapt big LLMs or Diffusion Models to new tasks since they already possess a substantial pre-trained knowledge base.
 
 A traditional image-to-image pipeline with inpainting wouldn’t work for this task because it typically introduces noise in the region we want to regenerate. In this case, it would disrupt all the garment textures and shades. The only solution would be to attach a Control-Net or IP-Adapter to inject image positions and textures at each forward block to preserve the original material.
 
-However, with the recent surge of in-image editing models like Flux.1-Kontext, Qwen-Image, GPT-Image 1, and so on, I wanted to experiment with one of these models. I chose Kontext.
+However, with the recent surge of in-image editing models like Flux.1-Kontext-Dev [4] and Qwen-Image-Edit [5], I wanted to experiment with one of these models. I chose Kontext.
 
 The strength of these models lies in their ability to concatenate a reference image with the target latent image, allowing the model to refer to it during denoising. This process is enabled by the use of 3DRoPE, which aligns the corresponding position between the target and reference images.
 
@@ -73,50 +73,75 @@ t.write(f"chromiq Change the {v} color on the right to match the left")  # trigg
 
 #### Training setup
 
-To train Kontext, I used AIToolkit by Ostris, which is a well maintained LoRA Trainer for several Diffusion Models. Since the aim of the task is to only modify the right side of the images (the garment), I use the masking on the loss function in order to not waste model capability on recreating also the left side: in this way, the gradient signal was focused only on the part of the images that matters for this problem, speeding up training and maintaining efficiency. 
+To train Kontext, I used AIToolkit by Ostris [6], which is a well maintained LoRA Trainer for several Diffusion Models. Since the aim of the task is to only modify the right side of the images (the garment), I use the masking on the loss function in order to not waste model capability on recreating also the left side: in this way, the gradient signal was focused only on the part of the images that matters for this problem, speeding up training and maintaining efficiency. 
 
 In addition, weight decay was set to 0 and the learning rate at 0.0001 to check as fast as possible if the approach worked.
 Due to limited compute resources, I couldn't train for more than 5200 steps, taking an overall 15 hours on an Nvidia RTX 6000 Pro. For the detailed hyperparameters setup, please check *"config.yaml"*.
 
 The problem I have encountered is that different website has different aspect ratio for the on-model images, so it was hard to resize without any strech or crop. In the end, I decided to resize and pad all the pair images with 1328 x 800, which is one of the supported Kontext resolutions.
 
-### Results and evaluation metrics
+## Results and evaluation metrics
 
 The results are fair, considering the limited dataset and not optimal resolution for all the test images. I computed inference on the test set, which is composed by the 5 Shootify images + 3 I obtained online. Of course, the images were not used in training to ensure no data leakage and maintain the evaluation correct.
 
-Below the qualitative results on the 8 generated images (the images are padded before and it is not the results of a poor generation):
+Below the **qualitative results** on the 8 generated images (the images are padded before and it is not the result of a poor generation):
+
 <table>
     <tr>
         <th>Input Pair</th>
         <th>Generated Output</th>
     </tr>
     <tr>
+        <td colspan="2" align="left"><i>1.jpg</i></td>
+    </tr>
+    <tr>
         <td><img src="test/control/pair1.jpg" alt="Input1" width="400"/></td>
         <td><img src="test/generated/pair1.jpg" alt="Generated1" width="400"/></td>
+    </tr>
+    <tr>
+        <td colspan="2" align="left"><i>2.jpg</i></td>
     </tr>
     <tr>
         <td><img src="test/control/pair2.jpg" alt="Input2" width="400"/></td>
         <td><img src="test/generated/pair2.jpg" alt="Generated2" width="400"/></td>
     </tr>
     <tr>
+        <td colspan="2" align="left"><i>3.jpg</i></td>
+    </tr>
+    <tr>
         <td><img src="test/control/pair3.jpg" alt="Input3" width="400"/></td>
         <td><img src="test/generated/pair3.jpg" alt="Generated3" width="400"/></td>
+    </tr>
+    <tr>
+        <td colspan="2" align="left"><i>4.jpg</i></td>
     </tr>
     <tr>
         <td><img src="test/control/pair4.jpg" alt="Input4" width="400"/></td>
         <td><img src="test/generated/pair4.jpg" alt="Generated4" width="400"/></td>
     </tr>
     <tr>
+        <td colspan="2" align="left"><i>5.jpg</i></td>
+    </tr>
+    <tr>
         <td><img src="test/control/pair5.jpg" alt="Input5" width="400"/></td>
         <td><img src="test/generated/pair5.jpg" alt="Generated5" width="400"/></td>
+    </tr>
+    <tr>
+        <td colspan="2" align="left"><i>6.jpg</i></td>
     </tr>
     <tr>
         <td><img src="test/control/pair6.jpg" alt="Input6" width="400"/></td>
         <td><img src="test/generated/pair6.jpg" alt="Generated6" width="400"/></td>
     </tr>
     <tr>
+        <td colspan="2" align="left"><i>7.jpg</i></td>
+    </tr>
+    <tr>
         <td><img src="test/control/pair7.jpg" alt="Input7" width="400"/></td>
         <td><img src="test/generated/pair7.jpg" alt="Generated7" width="400"/></td>
+    </tr>
+    <tr>
+        <td colspan="2" align="left"><i>8.jpg</i></td>
     </tr>
     <tr>
         <td><img src="test/control/pair8.jpg" alt="Input8" width="400"/></td>
@@ -124,10 +149,80 @@ Below the qualitative results on the 8 generated images (the images are padded b
     </tr>
 </table>
 
-For a quantitative analysis I decide to take
+For a **quantitative analysis**, I decide to use $∆E_{00}$ metric to measure the color consistency between:
 
+- control images and ground truth;
+- generated images and grount truth.
 
-Only on two images the color-correction seems non-existent while on the rest of them, it seems the model learns to copy the color from the left side.
+Initially, I tried plain MAE in RGB but it isn’t perceptually uniform—equal numeric errors can look very different—so it can underweight hue errors or overweight luminance, giving misleading “color consistency” scores.
+Instead, ΔE (especially CIEDE2000) measures color differences in a perceptual space (Lab), aligning more with how humans see hue and chroma shifts, so it penalizes more the kinds of mismatches customers notice.
+
+At first, I tried to run Grounded-SAM2 to compute ∆E only on the region mask but, due to tiny segmentation inconsistency, the results were often inconsistent. Therefore I decided to select a fixed portion of each garment to have a consistent evaluation; for example, "7.jpg" became like this:
+
+![Example of cut-off](metric.jpg)
+
+<p align="center"><em>from the left: control &mdash; ground-truth &mdash; generated</em></p>
+
+Results for $∆E_{00}$:
+
+<table align="center">
+    <tr>
+        <th>Image</th>
+        <th>Mean ΔE (gen vs gt)</th>
+        <th>Mean ΔE (control vs gt)</th>
+    </tr>
+    <tr>
+        <td>1.jpg</td>
+        <td>5.788</td>
+        <td>7.178</td>
+    </tr>
+    <tr>
+        <td>2.jpg</td>
+        <td>14.858</td>
+        <td>20.674</td>
+    </tr>
+    <tr>
+        <td>3.jpg</td>
+        <td>6.858</td>
+        <td>9.189</td>
+    </tr>
+    <tr>
+        <td>4.jpg</td>
+        <td>15.541</td>
+        <td>9.217</td>
+    </tr>
+    <tr>
+        <td>5.jpg</td>
+        <td>7.707</td>
+        <td>10.987</td>
+    </tr>
+    <tr>
+        <td>6.jpg</td>
+        <td>12.135</td>
+        <td>29.913</td>
+    </tr>
+    <tr>
+        <td>7.jpg</td>
+        <td>4.337</td>
+        <td>28.366</td>
+    </tr>
+    <tr>
+        <td>8.jpg</td>
+        <td>2.496</td>
+        <td>6.970</td>
+    </tr>
+</table>
+
+These results are very promising, especially given the limited training and narrow dataset variety: it’s already cutting color error by ~40% on average across most images (only one was not improved). With a bit more data diversity and small pipeline tweaks (consistent mask/compositing, alignment), this approach should tighten ΔE further toward a studio target range.
+
+## Next steps
+
+There is much headroom for improvement with more time and compute resources. In particular:
+
+- Try/fine-tune different Grounded-SAM2 models to improve mask segmentation quality and dataset creation;
+- Broaden the dataset to include more diversity and be more representative, particularly in different poses and image aspect ratios, which I’ve noticed are Kontext’s weakest areas.
+- Extend the training time and fine-tune various in-image editing models, such as Qwen-Image, to assess the best one for this use-case.
+
 
 ## References
 
@@ -136,3 +231,11 @@ Only on two images the color-correction seems non-existent while on the rest of 
 [2] https://github.com/IDEA-Research/GroundingDINO
 
 [3] https://github.com/IDEA-Research/Grounded-Segment-Anything
+
+[4] https://huggingface.co/black-forest-labs/FLUX.1-Kontext-dev 
+
+[5] https://huggingface.co/Qwen/Qwen-Image-Edit
+
+[6] https://github.com/ostris/ai-toolkit 
+
+
