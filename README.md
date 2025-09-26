@@ -171,45 +171,18 @@ Results for $∆E_{00}$:
         <th>Mean ΔE (gen vs gt)</th>
         <th>Mean ΔE (control vs gt)</th>
     </tr>
+    <tr><td>1.jpg</td><td>5.788</td><td>7.178</td></tr>
+    <tr><td>2.jpg</td><td>14.858</td><td>20.674</td></tr>
+    <tr><td>3.jpg</td><td>6.858</td><td>9.189</td></tr>
+    <tr><td>4.jpg</td><td>15.541</td><td>9.217</td></tr>
+    <tr><td>5.jpg</td><td>7.707</td><td>10.987</td></tr>
+    <tr><td>6.jpg</td><td>12.135</td><td>29.913</td></tr>
+    <tr><td>7.jpg</td><td>4.337</td><td>28.366</td></tr>
+    <tr><td>8.jpg</td><td>2.496</td><td>6.970</td></tr>
     <tr>
-        <td>1.jpg</td>
-        <td>5.788</td>
-        <td>7.178</td>
-    </tr>
-    <tr>
-        <td>2.jpg</td>
-        <td>14.858</td>
-        <td>20.674</td>
-    </tr>
-    <tr>
-        <td>3.jpg</td>
-        <td>6.858</td>
-        <td>9.189</td>
-    </tr>
-    <tr>
-        <td>4.jpg</td>
-        <td>15.541</td>
-        <td>9.217</td>
-    </tr>
-    <tr>
-        <td>5.jpg</td>
-        <td>7.707</td>
-        <td>10.987</td>
-    </tr>
-    <tr>
-        <td>6.jpg</td>
-        <td>12.135</td>
-        <td>29.913</td>
-    </tr>
-    <tr>
-        <td>7.jpg</td>
-        <td>4.337</td>
-        <td>28.366</td>
-    </tr>
-    <tr>
-        <td>8.jpg</td>
-        <td>2.496</td>
-        <td>6.970</td>
+        <td><strong>Average</strong></td>
+        <td><strong>8.715</strong></td>
+        <td><strong>15.312</strong></td>
     </tr>
 </table>
 
