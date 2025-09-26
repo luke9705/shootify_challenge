@@ -154,7 +154,7 @@ For a **quantitative analysis**, I decide to use $∆E_{00}$ metric to measure t
 - control images and ground truth;
 - generated images and grount truth.
 
-Initially, I tried plain MAE in RGB but it isn’t perceptually uniform—equal numeric errors can look very different—so it can underweight hue errors or overweight luminance, giving misleading “color consistency” scores.
+Initially, I tried plain MAE in RGB but it isn’t perceptually uniform, equal numeric errors can look very different, so it can underweight hue errors or overweight luminance, giving misleading “color consistency” scores.
 Instead, ΔE (especially CIEDE2000) measures color differences in a perceptual space (Lab), aligning more with how humans see hue and chroma shifts, so it penalizes more the kinds of mismatches customers notice.
 
 At first, I tried to run Grounded-SAM2 to compute ∆E only on the region mask but, due to tiny segmentation inconsistency, the results were often inconsistent. Therefore I decided to select a fixed portion of each garment to have a consistent evaluation; for example, "7.jpg" became like this:
