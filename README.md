@@ -190,6 +190,7 @@ Results for $∆E_{00}$:
 
 These results are very promising, especially given the limited training and narrow dataset variety: it’s already cutting color error by ~40% on average across most images (only one was not improved). With a bit more data diversity and small pipeline tweaks (better mask/compositing, aspect-ratio alignment), this approach should tighten ΔE further toward a studio target range.
 
+
 ## Next steps
 
 There is much headroom for improvement with more time and compute resources. In particular:
@@ -198,6 +199,48 @@ There is much headroom for improvement with more time and compute resources. In 
 - Broaden the dataset to include more diversity and be more representative, particularly in different poses and image aspect ratios, which I’ve noticed are Kontext’s weakest areas.
 - Extend the training time and fine-tune various in-image editing models, such as Qwen-Image, to assess the best one for this use-case.
 
+## WIP on Qwen
+<table>
+    <tr>
+        <th>Ground Truth</th>
+        <th>Generated</th>
+    </tr>
+    <tr>
+        <td colspan="2" align="left"><i>1.jpg</i></td>
+    </tr>
+    <tr>
+        <td><img src="qwen/test/gt/1.jpg" alt="Input1" width="400"/></td>
+        <td><img src="qwen/test/generated/1.jpg" alt="Generated1" width="400"/></td>
+    </tr>
+    <tr>
+        <td colspan="2" align="left"><i>2.jpg</i></td>
+    </tr>
+    <tr>
+        <td><img src="qwen/test/gt/2.jpg" alt="Input2" width="400"/></td>
+        <td><img src="qwen/test/generated/2.jpg" alt="Generated2" width="400"/></td>
+    </tr>
+    <tr>
+        <td colspan="2" align="left"><i>3.jpg</i></td>
+    </tr>
+    <tr>
+        <td><img src="qwen/test/gt/3.jpg" alt="Input3" width="400"/></td>
+        <td><img src="qwen/test/generated/3.jpg" alt="Generated3" width="400"/></td>
+    </tr>
+    <tr>
+        <td colspan="2" align="left"><i>4.jpg</i></td>
+    </tr>
+    <tr>
+        <td><img src="qwen/test/gt/4.jpg" alt="Input4" width="400"/></td>
+        <td><img src="qwen/test/generated/4.jpg" alt="Generated4" width="400"/></td>
+    </tr>
+    <tr>
+        <td colspan="2" align="left"><i>5.jpg</i></td>
+    </tr>
+    <tr>
+        <td><img src="qwen/test/gt/5.jpg" alt="Input5" width="400"/></td>
+        <td><img src="qwen/test/generated/5.jpg" alt="Generated5" width="400"/></td>
+    </tr>
+</table>
 
 ## References
 
