@@ -200,44 +200,53 @@ There is much headroom for improvement with more time and compute resources. In 
 - Extend the training time and fine-tune various in-image editing models, such as Qwen-Image, to assess the best one for this use-case.
 
 ## WIP on Qwen
+
+1750 steps
+
 <table>
     <tr>
         <th>Ground Truth</th>
+        <th>Degraded</th>
         <th>Generated</th>
     </tr>
     <tr>
-        <td colspan="2" align="left"><i>1.jpg</i></td>
+        <td colspan="3" align="left"><i>1.jpg</i></td>
     </tr>
     <tr>
-        <td><img src="qwen/test/gt/1.jpg" alt="Input1" width="400"/></td>
+        <td><img src="qwen/test/gt/1.jpg" alt="GT1" width="400"/></td>
+        <td><img src="qwen/test/control1/1.jpg" alt="Degraded1" width="400"/></td>
         <td><img src="qwen/test/generated/1.jpg" alt="Generated1" width="400"/></td>
     </tr>
     <tr>
-        <td colspan="2" align="left"><i>2.jpg</i></td>
+        <td colspan="3" align="left"><i>2.jpg</i></td>
     </tr>
     <tr>
-        <td><img src="qwen/test/gt/2.jpg" alt="Input2" width="400"/></td>
+        <td><img src="qwen/test/gt/2.jpg" alt="GT2" width="400"/></td>
+        <td><img src="qwen/test/control1/2.jpg" alt="Degraded2" width="400"/></td>
         <td><img src="qwen/test/generated/2.jpg" alt="Generated2" width="400"/></td>
     </tr>
     <tr>
-        <td colspan="2" align="left"><i>3.jpg</i></td>
+        <td colspan="3" align="left"><i>3.jpg</i></td>
     </tr>
     <tr>
-        <td><img src="qwen/test/gt/3.jpg" alt="Input3" width="400"/></td>
+        <td><img src="qwen/test/gt/3.jpg" alt="GT3" width="400"/></td>
+        <td><img src="qwen/test/control1/3.jpg" alt="Degraded3" width="400"/></td>
         <td><img src="qwen/test/generated/3.jpg" alt="Generated3" width="400"/></td>
     </tr>
     <tr>
-        <td colspan="2" align="left"><i>4.jpg</i></td>
+        <td colspan="3" align="left"><i>4.jpg</i></td>
     </tr>
     <tr>
-        <td><img src="qwen/test/gt/4.jpg" alt="Input4" width="400"/></td>
+        <td><img src="qwen/test/gt/4.jpg" alt="GT4" width="400"/></td>
+        <td><img src="qwen/test/control1/4.jpg" alt="Degraded4" width="400"/></td>
         <td><img src="qwen/test/generated/4.jpg" alt="Generated4" width="400"/></td>
     </tr>
     <tr>
-        <td colspan="2" align="left"><i>5.jpg</i></td>
+        <td colspan="3" align="left"><i>5.jpg</i></td>
     </tr>
     <tr>
-        <td><img src="qwen/test/gt/5.jpg" alt="Input5" width="400"/></td>
+        <td><img src="qwen/test/gt/5.jpg" alt="GT5" width="400"/></td>
+        <td><img src="qwen/test/control1/5.jpg" alt="Degraded5" width="400"/></td>
         <td><img src="qwen/test/generated/5.jpg" alt="Generated5" width="400"/></td>
     </tr>
 </table>
