@@ -92,63 +92,63 @@ Below the **qualitative results** on the 8 generated images (note that the image
     <tr>
         <th>Input Pair</th>
         <th>Generated Output</th>
-    </tr>
-    <tr>
+        </tr>
+        <tr>
         <td colspan="2" align="left"><i>1.jpg</i></td>
-    </tr>
-    <tr>
-        <td><img src="test/control/pair1.jpg" alt="Input1" width="400"/></td>
-        <td><img src="test/generated/pair1.jpg" alt="Generated1" width="400"/></td>
-    </tr>
-    <tr>
+        </tr>
+        <tr>
+        <td><img src="kontext/test/control/pair1.jpg" alt="Input1" width="400"/></td>
+        <td><img src="kontext/test/generated/pair1.jpg" alt="Generated1" width="400"/></td>
+        </tr>
+        <tr>
         <td colspan="2" align="left"><i>2.jpg</i></td>
-    </tr>
-    <tr>
-        <td><img src="test/control/pair2.jpg" alt="Input2" width="400"/></td>
-        <td><img src="test/generated/pair2.jpg" alt="Generated2" width="400"/></td>
-    </tr>
-    <tr>
+        </tr>
+        <tr>
+        <td><img src="kontext/test/control/pair2.jpg" alt="Input2" width="400"/></td>
+        <td><img src="kontext/test/generated/pair2.jpg" alt="Generated2" width="400"/></td>
+        </tr>
+        <tr>
         <td colspan="2" align="left"><i>3.jpg</i></td>
-    </tr>
-    <tr>
-        <td><img src="test/control/pair3.jpg" alt="Input3" width="400"/></td>
-        <td><img src="test/generated/pair3.jpg" alt="Generated3" width="400"/></td>
-    </tr>
-    <tr>
+        </tr>
+        <tr>
+        <td><img src="kontext/test/control/pair3.jpg" alt="Input3" width="400"/></td>
+        <td><img src="kontext/test/generated/pair3.jpg" alt="Generated3" width="400"/></td>
+        </tr>
+        <tr>
         <td colspan="2" align="left"><i>4.jpg</i></td>
-    </tr>
-    <tr>
-        <td><img src="test/control/pair4.jpg" alt="Input4" width="400"/></td>
-        <td><img src="test/generated/pair4.jpg" alt="Generated4" width="400"/></td>
-    </tr>
-    <tr>
+        </tr>
+        <tr>
+        <td><img src="kontext/test/control/pair4.jpg" alt="Input4" width="400"/></td>
+        <td><img src="kontext/test/generated/pair4.jpg" alt="Generated4" width="400"/></td>
+        </tr>
+        <tr>
         <td colspan="2" align="left"><i>5.jpg</i></td>
-    </tr>
-    <tr>
-        <td><img src="test/control/pair5.jpg" alt="Input5" width="400"/></td>
-        <td><img src="test/generated/pair5.jpg" alt="Generated5" width="400"/></td>
-    </tr>
-    <tr>
+        </tr>
+        <tr>
+        <td><img src="kontext/test/control/pair5.jpg" alt="Input5" width="400"/></td>
+        <td><img src="kontext/test/generated/pair5.jpg" alt="Generated5" width="400"/></td>
+        </tr>
+        <tr>
         <td colspan="2" align="left"><i>6.jpg</i></td>
-    </tr>
-    <tr>
-        <td><img src="test/control/pair6.jpg" alt="Input6" width="400"/></td>
-        <td><img src="test/generated/pair6.jpg" alt="Generated6" width="400"/></td>
-    </tr>
-    <tr>
+        </tr>
+        <tr>
+        <td><img src="kontext/test/control/pair6.jpg" alt="Input6" width="400"/></td>
+        <td><img src="kontext/test/generated/pair6.jpg" alt="Generated6" width="400"/></td>
+        </tr>
+        <tr>
         <td colspan="2" align="left"><i>7.jpg</i></td>
-    </tr>
-    <tr>
-        <td><img src="test/control/pair7.jpg" alt="Input7" width="400"/></td>
-        <td><img src="test/generated/pair7.jpg" alt="Generated7" width="400"/></td>
-    </tr>
-    <tr>
+        </tr>
+        <tr>
+        <td><img src="kontext/test/control/pair7.jpg" alt="Input7" width="400"/></td>
+        <td><img src="kontext/test/generated/pair7.jpg" alt="Generated7" width="400"/></td>
+        </tr>
+        <tr>
         <td colspan="2" align="left"><i>8.jpg</i></td>
-    </tr>
-    <tr>
-        <td><img src="test/control/pair8.jpg" alt="Input8" width="400"/></td>
-        <td><img src="test/generated/pair8.jpg" alt="Generated8" width="400"/></td>
-    </tr>
+        </tr>
+        <tr>
+        <td><img src="kontext/test/control/pair8.jpg" alt="Input8" width="400"/></td>
+        <td><img src="kontext/test/generated/pair8.jpg" alt="Generated8" width="400"/></td>
+        </tr>
 </table>
 
 For a **quantitative analysis**, I decide to use $∆E_{00}$ metric to measure the color consistency between:
